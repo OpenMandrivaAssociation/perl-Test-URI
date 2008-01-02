@@ -19,6 +19,7 @@ BuildRequires:  perl(Test::Pod)
 BuildRequires:  perl(Test::Builder::Tester)
 BuildRequires:  perl(URI)
 BuildArch:      noarch
+BuildRoot:      %{_tmppath}/%{name}-%{version}
 
 %description 
 Check various parts of Uniform Resource Locators.
