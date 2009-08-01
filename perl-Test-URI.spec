@@ -1,16 +1,16 @@
-%define module  Test-URI
-%define name    perl-%{module}
-%define version 1.08
-%define release %mkrel 4
+%define upstream_name    Test-URI
+%define upstream_version 1.08
 
-Name:           %{name}
-Version:        %{version}
-Release:        %{release}
-Summary:        Check Uniform Resource Identifiers
-License:        GPL or Artistic
-Group:          Development/Perl
-Url:            http://search.cpan.org/dist/%{module}
-Source:         http://www.cpan.org/modules/by-module/Test/%{module}-%{version}.tar.bz2
+Name:       perl-%{upstream_name}
+Version:    %perl_convert_version %{upstream_version}
+Release:    %mkrel 1
+
+Summary:    Check Uniform Resource Identifiers
+License:    GPL+ or Artistic
+Group:      Development/Perl
+Url:        http://search.cpan.org/dist/%{upstream_name}
+Source0:    http://www.cpan.org/modules/by-module/Test/%{upstream_name}-%{upstream_version}.tar.bz2
+
 %if %{mdkversion} < 1010
 BuildRequires:  perl-devel
 %endif
@@ -19,13 +19,13 @@ BuildRequires:  perl(Test::Pod)
 BuildRequires:  perl(Test::Builder::Tester)
 BuildRequires:  perl(URI)
 BuildArch:      noarch
-BuildRoot:      %{_tmppath}/%{name}-%{version}
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}
 
 %description 
 Check various parts of Uniform Resource Locators.
 
 %prep
-%setup -q -n %{module}-%{version}
+%setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
@@ -46,5 +46,3 @@ rm -rf %{buildroot}
 %doc Changes
 %{perl_vendorlib}/Test
 %{_mandir}/*/*
-
-
